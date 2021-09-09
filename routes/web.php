@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('layaout.app');
+})->name('app');
+
+Route::resource('/fumetti', 'FumettoController');
