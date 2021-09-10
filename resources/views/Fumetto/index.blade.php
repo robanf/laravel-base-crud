@@ -18,7 +18,11 @@
       <td>{{$fumetto['price']}}</td>
       <td><a href="{{route('fumetti.show', $fumetto->id)}}" class="btn btn-primary">dettaglio</a></td>
       <td><a href="{{route('fumetti.edit', $fumetto->id)}}" class="btn btn-secondary">edit</a></td>
-      <td><a href="{{route('fumetti.show', $fumetto->id)}}" class="btn btn-danger">elimina</a></td>
+      <td><form action="{{ route ('fumetti.destroy', $fumetto->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>  </td>
     </tr>
     @endforeach
   </tbody>

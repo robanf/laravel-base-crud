@@ -77,12 +77,22 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fumetto $fumetto)
+    public function update(Request $request, $id)
     {   
         $data = $request->all();
 
-        $fumetto->update($data);
+        /* $id->update($data); */
+        Fumetto::where('id',$id)
+        ->update([
+        'title'=>$data['title'],
+        'description'=>$data['description'],
+        'thumb'=>$data['thumb'],
+        'price'=>$data['price'],
+        'series'=>$data['series'],
+        'sale_date'=>$data['sale_date'],
+        'type'=>$data['type']]);
 
+        /* dd($variabile); */
 
         return redirect()->route('fumetti.index');
     }
@@ -95,6 +105,15 @@ class FumettoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Fumetto::where('id',$id)
+        ->delete([
+        'title',
+        'description',
+        'thumb',
+        'price',
+        'series',
+        'sale_date',
+        'type']);
+        return redirect()->route('fumetti.index');
     }
 }
