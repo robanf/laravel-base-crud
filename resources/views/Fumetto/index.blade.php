@@ -17,6 +17,8 @@
       <td>{{$fumetto['title']}}</td>
       <td>{{$fumetto['price']}}</td>
       <td><a href="{{route('fumetti.show', $fumetto->id)}}" class="btn btn-primary">dettaglio</a></td>
+      <td><a href="{{route('fumetti.edit', $fumetto->id)}}" class="btn btn-secondary">edit</a></td>
+      <td><a href="{{route('fumetti.show', $fumetto->id)}}" class="btn btn-danger">elimina</a></td>
     </tr>
     @endforeach
   </tbody>

@@ -26,7 +26,7 @@ class FumettoController extends Controller
      */
     public function create()
     {
-        //
+        return view('fumetto.create');
     }
 
     /**
@@ -37,7 +37,12 @@ class FumettoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $store = new Fumetto();
+        $store->fill($data);
+        $store->save();
+
+        return redirect()->route('fumetti.show',$store->id);
     }
 
     /**
@@ -61,7 +66,8 @@ class FumettoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $variabile = Fumetto::find($id);
+        return view('fumetto.edit', compact('variabile'));
     }
 
     /**
@@ -71,9 +77,14 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, Fumetto $fumetto)
+    {   
+        $data = $request->all();
+
+        $fumetto->update($data);
+
+
+        return redirect()->route('fumetti.index');
     }
 
     /**
